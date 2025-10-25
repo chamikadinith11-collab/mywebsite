@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="si">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ඔබේ නම — Portfolio</title>
+  <meta name="description" content="Simple personal portfolio" />
+  <style>
+    :root{
+      --maxw:1000px;
+      --accent:#0b74de;
+      --muted:#666;
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --radius:12px;
+      font-family: Inter, system-ui, Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:#111;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+    }
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:20px;}
+    header{display:flex;align-items:center;gap:16px}
+    .avatar{
+      width:96px;height:96px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#6ab0ff);
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:28px;
+    }
+    h1{margin:0;font-size:1.6rem}
+    p.lead{color:var(--muted);margin:6px 0 18px;}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
+    @media (max-width:820px){.grid{grid-template-columns:1fr;}}
+    .card{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(13,20,30,0.06);}
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .skill{padding:6px 10px;background:#f0f6ff;border-radius:999px;font-size:0.85rem;color:var(--accent)}
+    .projects{display:grid;gap:12px}
+    .proj{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #eef3ff}
+    .proj h3{margin:0 0 6px;font-size:1rem}
+    .btn{display:inline-block;padding:10px 14px;border-radius:9px;background:var(--accent);color:white;text-decoration:none}
+    form label{display:block;font-weight:600;margin-top:10px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef;margin-top:6px;font-size:0.95rem}
+    textarea{min-height:120px;resize:vertical}
+    footer{margin-top:22px;color:var(--muted);font-size:0.9rem;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="avatar">NB</div>
+      <div>
+        <h1>ඔබේ නම <span style="color:var(--muted);font-weight:400">— Web developer / Designer</span></h1>
+        <p class="lead">I build clean, responsive websites. ලාංකීය සිංහල පැහැයෙන් portfolio එකක්.</p>
+        <div class="skills">
+          <div class="skill">HTML</div>
+          <div class="skill">CSS</div>
+          <div class="skill">JavaScript</div>
+          <div class="skill">Responsive</div>
+        </div>
+      </div>
+    </header>
+
+    <main style="margin-top:18px" class="grid">
+      <section>
+        <div class="card">
+          <h2 style="margin-top:0">Projects</h2>
+          <div class="projects">
+            <article class="proj">
+              <h3>Project One</h3>
+              <p style="color:var(--muted);margin:0 0 8px">Simple landing page built with HTML & CSS.</p>
+              <a class="btn" href="#" aria-label="Open project">View</a>
+            </article>
+
+            <article class="proj">
+              <h3>Project Two</h3>
+              <p style="color:var(--muted);margin:0 0 8px">Small web app — JavaScript interactions.</p>
+              <a class="btn" href="#" aria-label="Open project">View</a>
+            </article>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h2 style="margin-top:0">About</h2>
+          <p style="color:var(--muted)">මම web developer කෙනෙක්. I make responsive websites that load fast and look great on mobile.</p>
+          <ul style="padding-left:18px;color:var(--muted)">
+            <li>Experience: 2 years</li>
+            <li>Location: Sri Lanka</li>
+          </ul>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h2 style="margin-top:0">Contact</h2>
+          <!-- Replace YOUR_FORMSPREE_ENDPOINT with your Formspree endpoint (or other service) -->
+          <form id="contact" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST">
+            <label for="name">නම</label>
+            <input id="name" name="name" required placeholder="ඔබේ නම" />
+            <label for="email">ඊමේල්</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" />
+            <label for="message">පණිවිඩය</label>
+            <textarea id="message" name="message" required placeholder="ඔබේ පණිවිඩය"></textarea>
+            <button class="btn" type="submit" style="margin-top:10px">Send</button>
+          </form>
+          <p style="margin-top:10px;color:var(--muted);font-size:0.9rem">ඔබට GitHub/GitLab link එකක් දාන්න පුළුවන්, හෝ direct email.</p>
+        </div>
+
+        <div class="card" style="margin-top:12px;text-align:center">
+          <h3 style="margin:0 0 8px">Download CV</h3>
+          <a class="btn" href="#" download>Download</a>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © <span id="year"></span> ඔබේ නම • Built with ❤
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Optional: show a simple "sent" message (Formspree will redirect by default if configured)
+    document.getElementById('contact').addEventListener('submit', function(){
+      alert('Message submitted — thank you!');
+    });
+  </script>
+</body>
+</html>
